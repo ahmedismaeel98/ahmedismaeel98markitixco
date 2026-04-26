@@ -1,0 +1,7 @@
+name: disable
+on: push
+jobs:
+  disable:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "disabled"
