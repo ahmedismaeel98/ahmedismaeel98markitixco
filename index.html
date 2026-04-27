@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markitix - شركة تصميم وتسويق رقمي احترافي</title>
+    <meta name="description" content="Markitix - شركة متخصصة في التسويق الرقمي والتصميم الاحترافي">
+    <title>Markitix - شركة تسويق رقمي وتصميم احترافي</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png.png">
     <style>
         * {
             margin: 0;
@@ -21,59 +23,34 @@
 
         body {
             font-family: 'Cairo', 'Tajawal', sans-serif;
-            background-color: #000d1a;
-            color: #ffffff;
+            background: linear-gradient(135deg, #000a15 0%, #001a2e 50%, #000d1a 100%);
+            color: #fff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #000d1a;
+            background: #000a15;
         }
 
         ::-webkit-scrollbar-thumb {
             background: #FF6600;
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #FF8C00;
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(6px); }
-        }
-
-        @keyframes whatsapp-pulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            100% { transform: scale(1.8); opacity: 0; }
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -81,61 +58,158 @@
             }
         }
 
-        /* Navbar */
-        .navbar {
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 102, 0, 0.3), 0 0 20px rgba(255, 102, 0, 0.15);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 102, 0, 0.5), 0 0 40px rgba(255, 102, 0, 0.25);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 50;
-            transition: all 0.5s ease;
-            padding: 1rem 1.5rem;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            transition: all 0.3s ease;
+            padding: 1.5rem 2rem;
         }
 
-        .navbar.scrolled {
-            background: rgba(0, 24, 48, 0.95);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        header.scrolled {
+            background: rgba(0, 10, 21, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 1rem 2rem;
         }
 
-        .navbar-content {
-            max-width: 80rem;
+        .navbar-container {
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo-section {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            animation: fadeInDown 0.6s ease;
         }
 
-        .logo-section img {
+        .logo img {
             height: 40px;
             width: auto;
             object-fit: contain;
-        }
-
-        .logo-text {
-            font-weight: bold;
-            font-size: 1.25rem;
-            letter-spacing: 0.05em;
-            display: none;
-        }
-
-        @media (min-width: 640px) {
-            .logo-text {
-                display: block;
-            }
         }
 
         .nav-links {
             display: none;
             list-style: none;
             gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FF6600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6600, transparent);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #FF6600, #FF8C00);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.5);
         }
 
         @media (min-width: 768px) {
@@ -144,939 +218,1445 @@
             }
         }
 
-        .nav-links li a {
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: #d1d5db;
-            text-decoration: none;
-            position: relative;
-            padding-bottom: 0.25rem;
-        }
-
-        .nav-links li a:hover {
-            color: white;
-        }
-
-        .nav-links li a.active {
-            color: #FF6600;
-            border-bottom: 2px solid #FF6600;
-        }
-
-        .mobile-menu-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .menu-toggle {
+            display: none;
             background: none;
             border: none;
-            cursor: pointer;
-            padding: 0.5rem;
+            color: white;
             font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        @media (min-width: 768px) {
-            .mobile-menu-btn {
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                background: rgba(0, 10, 21, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                border-top: 1px solid rgba(255, 102, 0, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+                max-height: 500px;
+            }
+
+            .cta-button {
                 display: none;
             }
         }
 
-        .mobile-menu {
-            display: none;
-            background: rgba(0, 24, 48, 0.98);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255,102,0,0.1);
-            padding: 1rem 1.5rem;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-menu ul {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            list-style: none;
-        }
-
-        .mobile-menu a {
-            display: block;
-            text-align: right;
-            font-size: 1rem;
-            font-weight: 600;
-            padding: 0.5rem 0;
-            text-decoration: none;
-            color: #d1d5db;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu a.active {
-            color: #FF6600;
-        }
-
-        /* Hero Section */
         .hero {
-            position: relative;
-            min-height: 100vh;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
-            background: radial-gradient(ellipse at 60% 40%, #003366 0%, #001830 40%, #000d1a 100%);
-            padding: 2rem 1.5rem;
-            margin-top: 60px;
+            padding: 2rem;
+            background: linear-gradient(135deg, #000a15 0%, #001a2e 30%, #000d1a 100%);
         }
 
-        .hero-canvas {
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero-glow-1 {
-            position: absolute;
-            top: 33%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 600px;
             height: 600px;
+            background: radial-gradient(circle, rgba(255, 102, 0, 0.1) 0%, transparent 70%);
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,102,0,0.06) 0%, transparent 70%);
-            filter: blur(40px);
-            pointer-events: none;
-        }
-
-        .hero-glow-2 {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,51,102,0.4) 0%, transparent 70%);
             filter: blur(60px);
-            pointer-events: none;
+            z-index: 1;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 51, 102, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            text-align: center;
-            max-width: 48rem;
+            z-index: 10;
+            position: relative;
         }
 
-        .hero-logo {
-            margin-bottom: 2rem;
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
             animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        .logo-ring {
-            width: 144px;
-            height: 144px;
-            border: 3px solid #FF6600;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: rgba(0, 22, 48, 0.8);
-            box-shadow: 0 0 30px rgba(255,102,0,0.5), 0 0 60px rgba(255,102,0,0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-ring img {
-            width: 96px;
-            height: 96px;
-            object-fit: contain;
-        }
-
-        .logo-ring::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px dashed rgba(255,102,0,0.3);
-            border-radius: 50%;
-            animation: spin 20s linear infinite;
-        }
-
-        @media (min-width: 768px) {
-            .logo-ring {
-                width: 176px;
-                height: 176px;
-            }
-
-            .logo-ring img {
-                width: 128px;
-                height: 128px;
-            }
-        }
-
-        .hero h1 {
-            font-size: 3.75rem;
-            font-weight: 900;
-            letter-spacing: -0.025em;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 6rem;
-            }
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease 0.6s both;
+        .hero-content h1 .highlight {
             color: #FF6600;
         }
 
-        .hero-subtitle .white {
-            color: white;
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
 
-        @media (min-width: 768px) {
-            .hero-subtitle {
-                font-size: 1.875rem;
-            }
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
         }
 
-        .hero-description {
-            color: #9ca3af;
-            font-size: 1rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.625;
-            max-width: 36rem;
-            animation: fadeInUp 0.8s ease 0.8s both;
-        }
-
-        @media (min-width: 768px) {
-            .hero-description {
-                font-size: 1.125rem;
-            }
-        }
-
-        .cta-button {
+        .hero-buttons a {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            border-radius: 9999px;
-            font-weight: bold;
-            color: white;
-            border: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
             background: linear-gradient(135deg, #FF6600, #FF8C00);
-            box-shadow: 0 0 20px rgba(255,102,0,0.5), 0 4px 20px rgba(255,102,0,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.8s ease 1s both;
-            font-size: 1rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
         }
 
-        .cta-button:hover {
-            box-shadow: 0 0 40px rgba(255,102,0,0.8), 0 8px 30px rgba(255,102,0,0.5);
-            transform: translateY(-2px) scale(1.03);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.5);
         }
 
-        .cta-button svg {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.3s;
+        .btn-secondary {
+            border: 2px solid #FF6600;
+            color: #FF6600;
+            background: transparent;
         }
 
-        .cta-button:hover svg {
-            transform: translateX(-4px);
+        .btn-secondary:hover {
+            background: rgba(255, 102, 0, 0.1);
+            transform: translateY(-3px);
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+        .hero-stats {
             display: flex;
-            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            opacity: 0.5;
         }
 
-        .scroll-line {
-            width: 1px;
-            height: 3rem;
-            background: linear-gradient(to bottom, transparent, #FF6600);
+        .stat-avatar {
+            display: flex;
+            margin-right: -0.5rem;
         }
 
-        .scroll-dot {
-            width: 1.5px;
-            height: 1.5px;
-            background: #FF6600;
+        .stat-avatar img {
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            animation: bounce 2s infinite;
+            border: 2px solid #001a2e;
         }
 
-        /* Services Section */
-        .services {
+        .stat-text {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .stat-text strong {
+            color: #fff;
+            display: block;
+        }
+
+        .hero-image {
             position: relative;
-            padding: 6rem 1.5rem;
-            background: linear-gradient(180deg, #000d1a 0%, #001226 50%, #000d1a 100%);
+            animation: slideInRight 0.8s ease 0.3s both;
         }
 
-        .services-bg {
+        .image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .image-wrapper::before {
+            content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, rgba(0,34,68,0.5) 0%, transparent 70%);
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.2) 0%, rgba(255, 102, 0, 0.05) 100%);
+            border-radius: 20px;
+            z-index: 2;
             pointer-events: none;
         }
 
-        .services-content {
-            position: relative;
-            z-index: 10;
-            max-width: 80rem;
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.2);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .glow-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            border: 2px solid rgba(255, 102, 0, 0.3);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+            z-index: 1;
+        }
+
+        .clients {
+            padding: 4rem 2rem;
+            background: rgba(0, 26, 46, 0.5);
+            border-top: 1px solid rgba(255, 102, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 102, 0, 0.1);
+        }
+
+        .clients-container {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .section-title {
+        .clients-title {
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .client-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .client-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .services {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 26, 46, 0.3) 50%, transparent 100%);
+            position: relative;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
             text-align: center;
             margin-bottom: 4rem;
         }
 
-        .title-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+        .section-header .label {
+            color: #FF6600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 900;
             margin-bottom: 1rem;
         }
 
-        .divider-line {
-            height: 1px;
-            width: 4rem;
-        }
-
-        .divider-left {
-            background: linear-gradient(to left, #FF6600, transparent);
-        }
-
-        .divider-right {
-            background: linear-gradient(to right, #FF6600, transparent);
-        }
-
-        .section-title h2 {
-            font-size: 1.875rem;
-            font-weight: 900;
-            color: white;
-        }
-
-        @media (min-width: 768px) {
-            .section-title h2 {
-                font-size: 2.25rem;
-            }
-        }
-
-        .section-description {
-            color: #9ca3af;
-            font-size: 1rem;
-            max-width: 32rem;
+        .section-header p {
+            color: #999;
+            font-size: 1.1rem;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .service-card {
-            padding: 1.5rem;
-            border-radius: 1rem;
-            background: rgba(0, 34, 68, 0.4);
-            border: 1px solid rgba(255,102,0,0.15);
-            backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.1) 0%, rgba(0, 26, 46, 0.1) 100%);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
             transition: all 0.4s ease;
-            cursor: default;
-            animation: fadeInUp 0.7s ease forwards;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        .service-card:nth-child(1) { animation-delay: 0ms; }
-        .service-card:nth-child(2) { animation-delay: 100ms; }
-        .service-card:nth-child(3) { animation-delay: 200ms; }
-        .service-card:nth-child(4) { animation-delay: 300ms; }
-        .service-card:nth-child(5) { animation-delay: 400ms; }
-        .service-card:nth-child(6) { animation-delay: 500ms; }
-
-        .service-card:hover {
-            border-color: rgba(255,102,0,0.6);
-            box-shadow: 0 0 24px rgba(255,102,0,0.15);
-            transform: translateY(-4px);
-            background: rgba(0, 44, 88, 0.6);
-        }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            background: linear-gradient(135deg, rgba(255,102,0,0.2), rgba(255,102,0,0.05));
-            border: 1px solid rgba(255,102,0,0.3);
-        }
-
-        .service-icon svg {
-            width: 26px;
-            height: 26px;
-            color: #FF6600;
-        }
-
-        .service-card h3 {
-            font-size: 1.125rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-card p {
-            font-size: 0.875rem;
-            color: #9ca3af;
-            line-height: 1.625;
-        }
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
 
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -1px;
+            left: 0;
             right: 0;
-            width: 80px;
-            height: 80px;
-            border-radius: 0 0 0 100%;
-            background: radial-gradient(circle at top right, rgba(255,102,0,0.15), transparent);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #FF6600, transparent);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 16px;
             pointer-events: none;
+        }
+
+        .service-card:hover {
+            border-color: rgba(255, 102, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.2) 0%, rgba(0, 26, 46, 0.2) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.15);
         }
 
         .service-card:hover::before {
             opacity: 1;
         }
 
-        /* Contact Section */
-        .contact {
-            position: relative;
-            padding: 6rem 1.5rem;
-            background: linear-gradient(180deg, #000d1a 0%, #001830 100%);
+        .service-card:hover::after {
+            opacity: 1;
         }
 
-        .contact-bg {
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.15), rgba(255, 102, 0, 0.05));
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #999;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .view-services-btn {
+            text-align: center;
+        }
+
+        .statistics {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.2) 0%, transparent 100%);
+            position: relative;
+        }
+
+        .statistics::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 102, 0, 0.05) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 1;
+        }
+
+        .statistics-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.1) 0%, rgba(0, 26, 46, 0.1) 100%);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .stat-box:nth-child(1) { animation-delay: 0.1s; }
+        .stat-box:nth-child(2) { animation-delay: 0.2s; }
+        .stat-box:nth-child(3) { animation-delay: 0.3s; }
+        .stat-box:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-box:hover {
+            border-color: rgba(255, 102, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.2) 0%, rgba(0, 26, 46, 0.2) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #FF6600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .portfolio {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 26, 46, 0.3) 50%, transparent 100%);
+        }
+
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.1) 0%, rgba(0, 26, 46, 0.1) 100%);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            cursor: pointer;
+        }
+
+        .portfolio-card:nth-child(1) { animation-delay: 0.1s; }
+        .portfolio-card:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-card:nth-child(3) { animation-delay: 0.3s; }
+        .portfolio-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 50% 100%, rgba(255,102,0,0.04) 0%, transparent 60%);
-            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0, 10, 21, 0.8) 0%, rgba(255, 102, 0, 0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 10;
         }
 
-        .contact-content {
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .portfolio-category {
+            color: #FF6600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .portfolio-btn {
+            background: #FF6600;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-btn:hover {
+            background: #FF8C00;
+            transform: scale(1.05);
+        }
+
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.2) 0%, transparent 100%);
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials-slider {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-slider {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.1) 0%, rgba(0, 26, 46, 0.1) 100%);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-card:hover {
+            border-color: rgba(255, 102, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.2) 0%, rgba(0, 26, 46, 0.2) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.15);
+        }
+
+        .rating {
+            color: #FF6600;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.2rem;
+        }
+
+        .testimonial-text {
+            color: #b3b3b3;
+            margin-bottom: 1.5rem;
+            flex: 1;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 102, 0, 0.1);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6600, #FF8C00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 102, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 102, 0, 0.5);
+        }
+
+        .dot.active {
+            background: #FF6600;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .cta-section {
+            padding: 6rem 2rem;
             position: relative;
-            z-index: 10;
-            max-width: 80rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.3) 0%, transparent 100%);
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 102, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 1;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            color: #b3b3b3;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-section .cta-button {
+            font-size: 1.05rem;
+            padding: 1.2rem 2.5rem;
+        }
+
+        .contact {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 26, 46, 0.3) 50%, transparent 100%);
+        }
+
+        .contact-container {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .contact-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .contact-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.1) 0%, rgba(0, 26, 46, 0.1) 100%);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
             text-align: center;
-            gap: 1rem;
-            padding: 2rem;
-            border-radius: 1rem;
-            background: rgba(0, 34, 68, 0.4);
-            border: 1px solid rgba(255,102,0,0.15);
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            animation: fadeInUp 0.7s ease forwards;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        .contact-card:nth-child(1) { animation-delay: 0ms; }
-        .contact-card:nth-child(2) { animation-delay: 120ms; }
-        .contact-card:nth-child(3) { animation-delay: 240ms; }
+        .contact-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
 
         .contact-card:hover {
-            border-color: rgba(255,102,0,0.5);
-            box-shadow: 0 0 24px rgba(255,102,0,0.15);
-            transform: translateY(-4px);
+            border-color: rgba(255, 102, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.2) 0%, rgba(0, 26, 46, 0.2) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.15);
         }
 
         .contact-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(255,102,0,0.25), rgba(255,102,0,0.05));
-            border: 1px solid rgba(255,102,0,0.4);
-            box-shadow: 0 0 20px rgba(255,102,0,0.15);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .contact-icon svg {
-            width: 26px;
-            height: 26px;
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: #b3b3b3;
+        }
+
+        .contact-link {
             color: #FF6600;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
-        .contact-label {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            margin-bottom: 0.25rem;
+        .contact-link:hover {
+            color: #FF8C00;
+            text-decoration: underline;
         }
 
-        .contact-value {
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .contact-value {
-                font-size: 1.125rem;
-            }
-        }
-
-        .contact-sub {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Footer */
         footer {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            border-top: 1px solid rgba(255,102,0,0.1);
-            background: #000810;
+            background: linear-gradient(135deg, rgba(0, 10, 21, 0.95) 0%, rgba(0, 26, 46, 0.3) 100%);
+            border-top: 1px solid rgba(255, 102, 0, 0.1);
+            padding: 4rem 2rem 2rem;
         }
 
-        footer p {
-            color: #9ca3af;
-            font-size: 0.875rem;
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            z-index: 50;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30px;
+            height: 2px;
+            background: #FF6600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #FF6600;
+            margin-right: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
             transition: all 0.3s ease;
             text-decoration: none;
-            border: none;
-            cursor: pointer;
+            color: #999;
         }
 
-        .whatsapp-btn:hover {
+        .social-icons a:hover {
+            background: #FF6600;
+            border-color: #FF6600;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 102, 0, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 30px;
+            width: auto;
+        }
+
+        .footer-desc {
+            color: #999;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            text-decoration: none;
+            color: white;
+            font-size: 1.8rem;
+            animation: fadeInUp 0.8s ease 1s both;
+        }
+
+        .whatsapp-button:hover {
             transform: scale(1.12);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
         }
 
-        .whatsapp-btn svg {
-            width: 26px;
-            height: 26px;
-            fill: white;
-        }
-
-        .whatsapp-btn::before {
+        .whatsapp-button::before {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: 50%;
             background: rgba(37, 211, 102, 0.3);
-            animation: whatsapp-pulse 2s ease-out infinite;
+            animation: pulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 102, 0, 0.1);
+            border: 2px solid rgba(255, 102, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            color: #FF6600;
+            font-size: 1.3rem;
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 102, 0, 0.2);
+            border-color: #FF6600;
+        }
+
+        @media (max-width: 600px) {
+            .whatsapp-button {
+                bottom: 1rem;
+                left: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .scroll-top {
+                bottom: 70px;
+                left: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            body {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-content">
-            <div class="logo-section" onclick="scrollToSection('hero')">
-<img src="logo.png" alt="Markitix Logo">            </div>
 
+<header id="header">
+    <div class="navbar-container">
+        <a href="#home" class="logo">
+            <img src="logo.png.png" alt="Markitix">
+            <span>MARKITIX</span>
+        </a>
+        <nav>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#hero" onclick="navClick(event, 'hero')" class="active">الرئيسية</a></li>
-                <li><a href="#services" onclick="navClick(event, 'services')">خدماتنا</a></li>
-                <li><a href="#works" onclick="navClick(event, 'works')">أعمالنا</a></li>
-                <li><a href="#about" onclick="navClick(event, 'about')">من نحن</a></li>
-                <li><a href="#contact" onclick="navClick(event, 'contact')">تواصل معنا</a></li>
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#services" class="nav-link">الخدمات</a></li>
+                <li><a href="#portfolio" class="nav-link">أعمالنا</a></li>
+                <li><a href="#testimonials" class="nav-link">عملاؤنا</a></li>
+                <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
             </ul>
-
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <ul>
-            <li><a href="#hero" onclick="navClick(event, 'hero')" class="active">الرئيسية</a></li>
-            <li><a href="#services" onclick="navClick(event, 'services')">خدماتنا</a></li>
-            <li><a href="#works" onclick="navClick(event, 'works')">أعمالنا</a></li>
-            <li><a href="#about" onclick="navClick(event, 'about')">من نحن</a></li>
-            <li><a href="#contact" onclick="navClick(event, 'contact')">تواصل معنا</a></li>
-        </ul>
+        </nav>
+        <a href="#contact" class="cta-button">استشارة مجانية</a>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
     </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <canvas class="hero-canvas" id="particles"></canvas>
-        <div class="hero-glow-1"></div>
-        <div class="hero-glow-2"></div>
-
+<section class="hero" id="home">
+    <div class="hero-container">
         <div class="hero-content">
-            <div class="hero-logo">
-                <div class="logo-ring">
-<img src="logo.png" alt="Markitix">                </div>
+            <h1>نحو <span class="highlight">هوية بصرية</span> تترك أثراً وتحقق نتائج</h1>
+            <p>نجمع بين الإبداع والتقنية لصناعة تجارب رقمية استثنائية تحقق أهدافك وتترك انطباعات دائمة</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">احجز استشارة مجانية →</a>
+                <a href="#services" class="btn-secondary">تعرف على خدماتنا →</a>
             </div>
-
-            <h1>Markitix</h1>
-            <p class="hero-subtitle">شركة تصميم وتسويق رقمي <span class="white">احترافي</span></p>
-            <p class="hero-description">نحو هوية بصرية مميزة لعلامتك التجارية — نجمع بين الإبداع والتقنية لنصنع تجارب رقمية لا تُنسى</p>
-
-            <button class="cta-button" onclick="scrollToSection('contact')">
-                تواصل معنا الآن
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-        </div>
-
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <div class="scroll-dot"></div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services-bg"></div>
-        <div class="services-content">
-            <div class="section-title">
-                <div class="title-divider">
-                    <div class="divider-line divider-left"></div>
-                    <h2>خدماتنا</h2>
-                    <div class="divider-line divider-right"></div>
-                </div>
-                <p class="section-description">نقدم باقة متكاملة من الخدمات الإبداعية والتسويقية لتمييز علامتك التجارية</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-                            <line x1="7" y1="2" x2="7" y2="22"></line>
-                            <line x1="17" y1="2" x2="17" y2="22"></line>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <line x1="2" y1="7" x2="22" y2="7"></line>
-                            <line x1="2" y1="17" x2="22" y2="17"></line>
-                        </svg>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-avatar">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23FF6600'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'%3E1%3C/text%3E%3C/svg%3E" alt="">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23003366'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'%3E2%3C/text%3E%3C/svg%3E" alt="">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%236600CC'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'%3E3%3C/text%3E%3C/svg%3E" alt="">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23FF3333'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'%3E4%3C/text%3E%3C/svg%3E" alt="">
                     </div>
-                    <h3>صناعة محتوى</h3>
-                    <p>إدارة وصناعة محتوى السوشيال ميديا بإبداع احترافي</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
+                    <div class="stat-text">
+                        <strong>+50</strong>
+                        <span>عميل سعيد</span>
                     </div>
-                    <h3>تصميم شعارات</h3>
-                    <p>تصميم شعارات احترافية تعبر عن هوية علامتك التجارية</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <h3>تسويق رقمي</h3>
-                    <p>حملات إعلانية فعالة للوصول لجمهورك المستهدف</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="2" y1="20" x2="22" y2="20"></line>
-                        </svg>
-                    </div>
-                    <h3>تصميم مواقع</h3>
-                    <p>تصميم مواقع حديثة وسريعة متجاوبة مع جميع الأجهزة</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3>هوية بصرية</h3>
-                    <p>بناء هوية بصرية متكاملة تعكس احترافية علامتك التجارية</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
-                            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
-                            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
-                        </svg>
-                    </div>
-                    <h3>تصميم جرافيك</h3>
-                    <p>تصاميم إبداعية بجودة عالية لمختلف المجالات</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-bg"></div>
-        <div class="contact-content">
-            <div class="section-title">
-                <div class="title-divider">
-                    <div class="divider-line divider-left"></div>
-                    <h2>تواصل معنا</h2>
-                    <div class="divider-line divider-right"></div>
-                </div>
-                <p class="section-description">نحن هنا لمساعدتك في تحقيق أهدافك التسويقية</p>
+        <div class="hero-image">
+            <div class="glow-circle"></div>
+            <div class="image-wrapper">
+                <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600" alt="فريق العمل">
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="contact-grid">
-                <a href="tel:+9647703718200" class="contact-card">
-                    <div class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <p class="contact-label">الهاتف</p>
-                    <p class="contact-value">009647703718200</p>
-                    <p class="contact-sub">اتصل بنا أو راسلنا عبر واتساب</p>
-                </a>
+<section class="clients">
+    <div class="clients-container">
+        <p class="clients-title">نثق بها أفضل الشركات</p>
+        <div class="clients-grid">
+            <div class="client-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='16' font-weight='bold' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EZAIN%3C/text%3E%3C/svg%3E" alt="Zain">
+            </div>
+            <div class="client-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='14' font-weight='bold' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EAsiacell%3C/text%3E%3C/svg%3E" alt="Asiacell">
+            </div>
+            <div class="client-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='14' font-weight='bold' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EKOREK%3C/text%3E%3C/svg%3E" alt="Korek">
+            </div>
+            <div class="client-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='14' font-weight='bold' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EIQOS%3C/text%3E%3C/svg%3E" alt="IQOS">
+            </div>
+            <div class="client-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='12' font-weight='bold' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EHUAWEI%3C/text%3E%3C/svg%3E" alt="Huawei">
+            </div>
+            <div class="client-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='14' font-weight='bold' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3ECoca-Cola%3C/text%3E%3C/svg%3E" alt="Coca-Cola">
+            </div>
+        </div>
+    </div>
+</section>
 
-                <a href="mailto:info@markitixco.com" class="contact-card">
-                    <div class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                        </svg>
-                    </div>
-                    <p class="contact-label">البريد الإلكتروني</p>
-                    <p class="contact-value">info@markitixco.com</p>
-                    <p class="contact-sub">راسلنا على البريد الإلكتروني</p>
-                </a>
+<section class="services" id="services">
+    <div class="services-container">
+        <div class="section-header">
+            <span class="label">خدماتنا</span>
+            <h2>حلول متكاملة لنمو أعمالك</h2>
+            <p>نقدم مجموعة شاملة من الخدمات الإبداعية والتسويقية لتحقيق أهدافك</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>تصميم الهوية البصرية</h3>
+                <p>تصميم شعارات واستراتيجيات هوية بصرية قوية تعكس قيم علامتك التجارية</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>إدارة التواصل الاجتماعي</h3>
+                <p>إدارة احترافية لحساباتك على جميع منصات التواصل الاجتماعي بمحتوى جذاب</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>إعلانات ممولة</h3>
+                <p>حملات إعلانية مستهدفة وفعالة على جميع المنصات الرقمية الكبرى</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>تحسين محركات البحث SEO</h3>
+                <p>تحسين ظهور موقعك في نتائج البحث بطرق احترافية وآمنة</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>تصميم وتطوير المواقع</h3>
+                <p>تصميم مواقع حديثة وسريعة محسّنة للهاتف والحاسوب</p>
+            </div>
+        </div>
+        <div class="view-services-btn">
+            <a href="#services" class="cta-button">عرض جميع الخدمات</a>
+        </div>
+    </div>
+</section>
 
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                    </div>
-                    <p class="contact-label">الموقع</p>
-                    <p class="contact-value">تكريت - صلاح الدين</p>
-                    <p class="contact-sub">العراق</p>
+<section class="statistics">
+    <div class="statistics-container">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">عميل سعيد</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number" data-target="200">0</div>
+                <div class="stat-label">حملة ناجحة</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-number" data-target="98">0</div>
+                <div class="stat-label">% رضا العملاء</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">سنوات خبرة</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+    <div class="portfolio-container">
+        <div class="section-header">
+            <span class="label">نماذج أعمالنا</span>
+            <h2>مشاريع ناجحة</h2>
+            <p>نماذج من المشاريع التي أنجزناها لعملائنا بنجاح</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <img src="https://images.pexels.com/photos/14974382/pexels-photo-14974382.jpeg?auto=compress&cs=tinysrgb&w=600" alt="مطعم" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">مطاعم وأغذية</div>
+                    <div class="portfolio-title">تصميم هوية بصرية</div>
+                    <button class="portfolio-btn">عرض المشروع</button>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.pexels.com/photos/3962286/pexels-photo-3962286.jpeg?auto=compress&cs=tinysrgb&w=600" alt="عطور" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">العطور والعناية</div>
+                    <div class="portfolio-title">حملة تسويقية رقمية</div>
+                    <button class="portfolio-btn">عرض المشروع</button>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.pexels.com/photos/3991846/pexels-photo-3991846.jpeg?auto=compress&cs=tinysrgb&w=600" alt="عقارات" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">العقارات</div>
+                    <div class="portfolio-title">موقع إلكتروني متقدم</div>
+                    <button class="portfolio-btn">عرض المشروع</button>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=600" alt="أزياء" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">الموضة والأزياء</div>
+                    <div class="portfolio-title">تصميم وإدارة محتوى</div>
+                    <button class="portfolio-btn">عرض المشروع</button>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="view-services-btn">
+            <a href="#portfolio" class="cta-button">عرض جميع الأعمال</a>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Markitix. جميع الحقوق محفوظة.</p>
-    </footer>
+<section class="testimonials" id="testimonials">
+    <div class="testimonials-container">
+        <div class="section-header">
+            <span class="label">آراء عملائنا</span>
+            <h2>ماذا يقول عملاؤنا عنا</h2>
+            <p>شهادات حقيقية من عملاء حققنا لهم نتائج استثنائية</p>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p class="testimonial-text">"فريق عمل محترف جداً، قدموا لنا حملة تسويقية رائعة أسهمت في زيادة مبيعاتنا بشكل كبير"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">أ.م</div>
+                    <div class="author-info">
+                        <h4>أحمد محمد</h4>
+                        <p>مدير شركة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p class="testimonial-text">"تصميم الهوية البصرية كان احترافياً جداً، عكس رؤيتنا بشكل مثالي وساعدنا في بناء علامة قوية"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">س.ع</div>
+                    <div class="author-info">
+                        <h4>سارة علي</h4>
+                        <p>مؤسسة مشروع</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p class="testimonial-text">"متابعة احترافية ونتائج رائعة، استطاعوا تحقيق أهدافنا في وقت أقل من المتوقع"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">ع.ح</div>
+                    <div class="author-info">
+                        <h4>علي حسن</h4>
+                        <p>صاحب متجر</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots" id="slider-dots">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+        </div>
+    </div>
+</section>
 
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/9647703718200" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" title="WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>جاهز للانطلاق بمشروعك؟</h2>
+        <p>تواصل معنا اليوم واحصل على استشارة مجانية مع أحد متخصصينا</p>
+        <a href="#contact" class="cta-button">احجز استشارة مجانية</a>
+    </div>
+</section>
 
-    <script>
-        // Particles Canvas
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+<section class="contact" id="contact">
+    <div class="contact-container">
+        <div class="section-header">
+            <span class="label">تواصل معنا</span>
+            <h2>نحن هنا للمساعدة</h2>
+            <p>تواصل معنا بأي طريقة تناسبك</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>الهاتف</h3>
+                <p><a href="tel:+9647703718200" class="contact-link">009647703718200</a></p>
+                <p style="color: #666; font-size: 0.9rem;">متاح 24/7 عبر الهاتف والواتس</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h3>البريد الإلكتروني</h3>
+                <p><a href="mailto:info@markitixco.com" class="contact-link">info@markitixco.com</a></p>
+                <p style="color: #666; font-size: 0.9rem;">سنرد عليك في أقرب وقت</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3>الموقع</h3>
+                <p>تكريت - محافظة صلاح الدين</p>
+                <p style="color: #666; font-size: 0.9rem;">العراق</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        const PARTICLE_COUNT = 80;
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <img src="logo.png.png" alt="Markitix" style="height: 30px;">
+                    <span>MARKITIX</span>
+                </div>
+                <p class="footer-desc">شركة متخصصة في التسويق الرقمي والتصميم الاحترافي. نجمع بين الإبداع والتقنية لصناعة تجارب رقمية استثنائية.</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/markitixco" target="_blank" title="Instagram">📷</a>
+                    <a href="https://facebook.com/markitixco" target="_blank" title="Facebook">f</a>
+                    <a href="https://linkedin.com/company/markitixco" target="_blank" title="LinkedIn">in</a>
+                    <a href="https://wa.me/9647703718200" target="_blank" title="WhatsApp">💬</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>الخدمات</h4>
+                <ul>
+                    <li><a href="#services">تصميم الهوية البصرية</a></li>
+                    <li><a href="#services">إدارة التواصل الاجتماعي</a></li>
+                    <li><a href="#services">إعلانات ممولة</a></li>
+                    <li><a href="#services">تحسين محركات البحث</a></li>
+                    <li><a href="#services">تصميم المواقع</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#portfolio">أعمالنا</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>معلومات التواصل</h4>
+                <ul>
+                    <li><a href="tel:+9647703718200">☎️ 009647703718200</a></li>
+                    <li><a href="mailto:info@markitixco.com">✉️ info@markitixco.com</a></li>
+                    <li><a href="https://instagram.com/markitixco" target="_blank">📱 @markitixco</a></li>
+                    <li>📍 تكريت - العراق</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Markitix. جميع الحقوق محفوظة | Designed & Developed with ❤️</p>
+        </div>
+    </div>
+</footer>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+<a href="https://wa.me/9647703718200" target="_blank" rel="noopener noreferrer" class="whatsapp-button" title="تحدث معنا على واتساب">
+    💬
+</a>
+
+<div class="scroll-top" id="scroll-top">↑</div>
+
+<script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const navItems = document.querySelectorAll('.nav-link');
+    const scrollTop = document.getElementById('scroll-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+            scrollTop.classList.add('show');
+        } else {
+            header.classList.remove('scrolled');
+            scrollTop.classList.remove('show');
         }
+    });
 
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    radius: Math.random() * 1.8 + 0.4,
-                    alpha: Math.random() * 0.5 + 0.15
-                });
-            }
-        }
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
 
-        function drawParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    navItems.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
 
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
+    scrollTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 102, 0, ${p.alpha})`;
-                ctx.fill();
-            });
-
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(0, 34, 68, ${0.3 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 60;
+            const updateCount = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCount);
+                } else {
+                    counter.textContent = target;
                 }
-            }
-
-            requestAnimationFrame(drawParticles);
-        }
-
-        resizeCanvas();
-        initParticles();
-        drawParticles();
-
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initParticles();
+            };
+            updateCount();
         });
+    }
 
-        // Navbar scroll effect
-        const navbar = document.querySelector('.navbar');
-        let lastScrollY = 0;
-
-        window.addEventListener('scroll', () => {
-            lastScrollY = window.scrollY;
-            if (window.scrollY > 40) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+    const statsSection = document.querySelector('.statistics');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
             }
         });
+    });
+    observer.observe(statsSection);
 
-        // Navigation
-        let currentActive = 'hero';
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.dot');
 
-        function navClick(e, section) {
+    function goToSlide(index) {
+        currentSlide = index;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        goToSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 5000);
+    goToSlide(0);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            updateActiveLink(section);
-            document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
-            document.getElementById('mobile-menu').classList.remove('active');
-        }
-
-        function scrollToSection(section) {
-            updateActiveLink(section);
-            document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
-            document.getElementById('mobile-menu').classList.remove('active');
-        }
-
-        function updateActiveLink(section) {
-            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
-                a.classList.remove('active');
-            });
-            document.querySelectorAll(`a[href="#${section}"]`).forEach(a => {
-                a.classList.add('active');
-            });
-            currentActive = section;
-        }
-
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
-    </script>
+    });
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').slice(1) === current) {
+                item.classList.add('active');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
