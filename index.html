@@ -3,73 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARKITIX | العرض الاستراتيجي</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>MARKITIX - نبتكر هويتك الرقمية بلمسة احترافية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 1. الإعدادات الأساسية والهوية البصرية */
         :root {
-            --navy-blue: #0a192f;
-            --orange-accent: #ff6a00;
-            --light-gray: #f8fafc;
+            --navy-deep: #0a192f;
+            --navy-medium: #112240;
+            --orange-bright: #ff6a00;
+            --orange-soft: #ff8c42;
+            --gray-light: #e6e9ec;
             --white: #ffffff;
-            --text-main: #ccd6f6;
-            --text-heading: #f8fafc;
+            --text-dark: #333333;
+            --text-light: #ccd6f6;
+            --font-family-main: 'Cairo', sans-serif;
+            --font-family-alt: 'Tajawal', sans-serif;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background-color: #111827;
-            margin: 0;
-            display: grid;
-            gap: 40px;
-            place-items: center;
-            padding: 40px 0;
+            background-color: var(--navy-deep);
+            color: var(--text-light);
+            font-family: var(--font-family-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        .slide-container {
-            width: 1280px;
-            height: 720px;
-            background-color: var(--navy-blue);
-            color: var(--text-main);
-            font-family: 'Cairo', sans-serif;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 60px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* تأثيرات الخلفية - Abstract Shapes */
-        .slide-container::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 106, 0, 0.1) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        /* 2. التحريك (Animations) */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+        /* حركات الأنيميشن الأساسية */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes numberPop {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         @keyframes moveText {
@@ -77,420 +58,736 @@
             100% { transform: translateX(-100%); }
         }
 
-        .animate-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-
-        /* 3. العناوين والنصوص */
-        h1, h2, h3 {
-            color: var(--text-heading);
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
+        /* كلاسات الأنيميشن المرتبطة بالتمرير (Scroll) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
         }
 
-        .slide-title {
-            font-size: 48px;
-            margin-bottom: 40px;
-            border-right: 8px solid var(--orange-accent);
-            padding-right: 20px;
-            line-height: 1.2;
-            z-index: 1;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        p {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .content-area {
-            flex-grow: 1;
+        /* تنسيق الشريط العلوي (Header) */
+        header {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        /* 4. التخطيطات (Layouts) */
-
-        /* Title Slide */
-        .title-layout {
-            text-align: center;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100%;
-        }
-
-        .title-layout h1 {
-            font-size: 90px;
-            margin-bottom: 20px;
-            color: var(--orange-accent);
-        }
-
-        .title-layout .subtitle {
-            font-size: 32px;
-            color: var(--white);
-            max-width: 800px;
-        }
-
-        /* Two Column */
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .image-wrapper {
+            padding: 20px 5%;
+            background-color: rgba(10, 25, 47, 0.95);
+            position: fixed;
             width: 100%;
-            height: 450px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 106, 0, 0.3);
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Tiled Content */
-        .tiled-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .tile {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .logo img {
+            width: 180px;
             transition: 0.3s;
-            text-align: center;
         }
 
-        .tile:hover {
-            border-color: var(--orange-accent);
-            background: rgba(255, 255, 255, 0.05);
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
-        .tile i {
-            font-size: 50px;
-            color: var(--orange-accent);
-            margin-bottom: 20px;
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
         }
 
-        /* Highlighted Numbers */
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: var(--font-family-alt);
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--orange-bright);
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--orange-bright);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .btn-header {
+            background-color: var(--orange-bright);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-family-alt);
+            font-weight: 800;
+            transition: 0.3s;
+            border: 2px solid var(--orange-bright);
+            box-shadow: 0 4px 10px rgba(255, 106, 0, 0.3);
+        }
+
+        .btn-header:hover {
+            background-color: transparent;
+            color: var(--orange-bright);
+            box-shadow: 0 4px 20px rgba(255, 106, 0, 0.6);
+        }
+
+        /* القسم الرئيسي */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 150px 5% 100px;
+            background: radial-gradient(circle at right, var(--navy-medium), var(--navy-deep));
+            overflow: hidden;
+        }
+
+        .hero-background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="%23fff"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+        }
+
+        .hero-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .hero-content {
+            width: 50%;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-family: var(--font-family-main);
+            color: var(--white);
+            font-weight: 900;
+        }
+
+        .hero-content h1 span {
+            color: var(--orange-bright);
+            position: relative;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            max-width: 90%;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-family-alt);
+            font-weight: 800;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--orange-bright);
+            color: var(--white);
+            border: 2px solid var(--orange-bright);
+            box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--orange-bright);
+            box-shadow: 0 4px 25px rgba(255, 106, 0, 0.8);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--orange-bright);
+            border: 2px solid var(--orange-bright);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 106, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .hero-image-showcase {
+            width: 45%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-layer-base {
+            position: relative;
+            width: 90%;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 106, 0, 0.1), transparent 70%);
+            padding: 2px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .image-layer-base img {
+            width: 100%;
+            border-radius: 18px;
+            display: block;
+            transition: 0.5s ease-in-out;
+            mask-image: linear-gradient(to bottom, white 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, white 80%, transparent 100%);
+        }
+
+        /* قسم الإحصائيات */
+        .stats-section {
+            background-color: var(--navy-medium);
+            padding: 60px 5%;
+            margin-top: -30px;
+            border-radius: 30px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+            border-bottom: 2px solid rgba(255, 106, 0, 0.3);
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .stat-item {
+        .stat-card {
+            background-color: var(--white);
+            color: var(--navy-deep);
+            padding: 30px;
             text-align: center;
-            animation: numberPop 1s ease-out forwards;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border: 2px solid transparent;
         }
 
-        .stat-number {
-            font-size: 80px;
-            font-weight: 700;
-            color: var(--orange-accent);
-            line-height: 1;
-            margin-bottom: 10px;
+        .stat-card i {
+            font-size: 3rem;
+            color: var(--orange-bright);
+            margin-bottom: 15px;
         }
 
-        .stat-label {
-            font-size: 20px;
-            color: var(--white);
-        }
-
-        /* Partners Row */
-        .partners-row {
+        .stat-card h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+            color: var(--navy-deep);
             display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            margin-top: 50px;
+            justify-content: center;
+            align-items: center;
+            direction: ltr; /* لضبط إشارة الـ % و الـ + بجانب الرقم */
         }
 
-        .partner-box {
-            flex: 1;
-            height: 150px;
-            background: white;
-            border-radius: 10px;
+        .stat-card p {
+            font-size: 1.1rem;
+            color: #777;
+            font-weight: 700;
+        }
+
+        /* العناوين والأقسام */
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-section, .process-section, .testimonials-section, .blog-section {
+            padding: 100px 5%;
+            background-color: var(--navy-deep);
+        }
+
+        .services-section {
+            background-color: var(--white);
+            padding: 100px 5%;
+            border-radius: 30px;
+        }
+
+        /* الشبكات */
+        .about-cards, .services-grid, .blog-grid, .testimonials-grid {
+            display: grid;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-cards, .services-grid, .blog-grid, .testimonials-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* البطاقات */
+        .about-card, .service-card, .testimonial-card {
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .about-card {
+            background-color: var(--navy-medium);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card, .testimonial-card {
+            background-color: var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            color: var(--navy-deep);
+        }
+
+        .service-card h3, .testimonial-card h3 {
+            color: var(--navy-deep);
+        }
+        
+        .service-card p, .testimonial-card p {
+            color: #555;
+        }
+
+        .about-card i, .service-card i {
+            font-size: 3rem;
+            color: var(--orange-bright);
+            margin-bottom: 20px;
+        }
+
+        /* الشركاء (4 شركات) */
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .partners-logos img {
+            height: 60px;
+            transition: 0.3s;
+            filter: grayscale(100%) brightness(200%);
+            opacity: 0.6;
+        }
+
+        .partners-logos img:hover {
+            filter: grayscale(0%) brightness(100%);
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* المدونة المحدثة */
+        .blog-card {
+            background-color: var(--navy-medium);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--orange-bright);
+        }
+
+        .blog-card-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-card-content {
+            padding: 30px;
+        }
+
+        .blog-card-content h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .blog-card-content p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .btn-blog {
+            color: var(--orange-bright);
+            text-decoration: none;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            gap: 5px;
         }
 
-        .partner-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        /* Coming Soon Ribbon */
-        .coming-soon-banner {
-            background-color: var(--orange-accent);
-            color: white;
-            padding: 20px 0;
-            font-size: 24px;
-            font-weight: bold;
-            white-space: nowrap;
+        /* شريط قريباً */
+        .portfolio-section {
+            background-color: var(--navy-medium);
+            position: relative;
+            padding: 100px 0;
             overflow: hidden;
-            margin-top: 50px;
+            border-top: 2px solid rgba(255, 106, 0, 0.3);
+        }
+
+        .coming-soon-ribbon {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            background-color: var(--orange-bright);
+            color: var(--white);
+            padding: 20px 0;
+            font-size: 2.2rem;
+            font-weight: 900;
+            white-space: nowrap;
+            z-index: 20;
+            transform: translateY(-50%);
         }
 
         .moving-text {
             display: inline-block;
-            animation: moveText 10s linear infinite;
+            animation: moveText 15s linear infinite;
         }
 
-        /* Footer/Contact */
-        .contact-grid {
+        /* الفوتر */
+        footer {
+            background-color: #071224;
+            padding: 80px 5% 40px;
+            border-top: 2px solid var(--orange-bright);
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 40px;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 40px;
-            border-radius: 20px;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 24px;
-        }
+        .footer-logo img { width: 200px; margin-bottom: 20px; }
+        .footer-links ul { list-style: none; }
+        .footer-links a, .footer-contact a { color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .footer-links a:hover, .footer-contact a:hover { color: var(--orange-bright); }
+        .footer-contact i { color: var(--orange-bright); font-size: 1.2rem; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-icons a { color: var(--white); font-size: 1.5rem; }
+        .social-icons a:hover { color: var(--orange-bright); }
+        .footer-bottom { grid-column: 1 / -1; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; margin-top: 30px; }
 
-        .contact-item i {
-            color: var(--orange-accent);
-            font-size: 40px;
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column-reverse; text-align: center; }
+            .hero-content, .hero-image-showcase { width: 100%; }
+            nav ul { display: none; }
+            .stats-grid, .about-cards, .services-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; text-align: center; }
+            .social-icons, .footer-contact a { justify-content: center; }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="slide-container" id="slide1">
-        <div class="title-layout animate-up">
-            <h1 class="animate-up delay-1">MARKITIX</h1>
-            <p class="subtitle animate-up delay-2">نبتكر هويتك .. نضاعف نجاحك</p>
-            <p style="margin-top: 40px;" class="animate-up delay-2">وكالة رقمية متكاملة لتقديم حلول التصميم والتسويق الاستراتيجي</p>
+    <header>
+        <div class="logo">
+            <img src="logo.png.png" alt="Markitix Logo">
         </div>
-    </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#services">خدماتنا</a></li>
+                <li><a href="#portfolio">سابقة أعمالنا</a></li>
+                <li><a href="#blog">المدونة</a></li>
+            </ul>
+        </nav>
+        <a href="#footer" class="btn-header">تواصل معنا الآن</a>
+    </header>
 
-    <div class="slide-container" id="slide2">
-        <div class="title-layout">
-            <h2 class="slide-title animate-up">من نحن</h2>
-            <div class="content-area animate-up delay-1">
-                <hr style="width: 100px; border: 2px solid var(--orange-accent); margin-bottom: 30px;">
-                <p style="font-size: 28px; text-align: center; max-width: 1000px; margin: 0 auto;">
-                    نحن فريق من المبدعين والخبراء الاستراتيجيين، نؤمن بأن كل علامة تجارية تمتلك قصة فريدة تستحق أن تُروى بأفضل الطرق البصرية والتقنية.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="slide-container" id="slide3">
-        <h2 class="slide-title">رؤيتنا المتكاملة</h2>
-        <div class="content-area">
-            <div class="two-column">
-                <div class="animate-up delay-1">
-                    <p>في <strong>MARKITIX</strong>، لا نكتفي بتقديم الخدمات، بل نصنع شراكات استراتيجية تهدف للنمو المستدام. نحن متخصصون في:</p>
-                    <ul style="list-style: circle; padding-right: 25px; font-size: 20px;">
-                        <li>تصميم الشعارات والهوية البصرية التي تعكس جوهر علامتك.</li>
-                        <li>هندسة وتطوير المواقع الإلكترونية بتجربة مستخدم عالمية.</li>
-                        <li>إبداع الجرافيك ديزاين والمواد التسويقية الرقمية.</li>
-                        <li>إدارة المحتوى الرقمي بذكاء لضمان أعلى معدلات التفاعل.</li>
-                        <li>وضع استراتيجيات التسويق الرقمي التي تحقق نتائج ملموسة.</li>
-                    </ul>
+    <section id="hero" class="hero reveal">
+        <div class="hero-background-layer"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>MARKITIX<br> نبتكر <span>هويتك</span> نضاعف <span>نجاحك</span></h1>
+                <p>وكالة رقمية متكاملة تقدم حلولاً إبداعية استراتيجية للأعمال الطموحة. ندمج التصميم بالتسويق لنصنع فارقاً.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">استكشف خدماتنا <i class="fa-solid fa-arrow-left"></i></a>
+                    <a href="#about" class="btn-secondary">اعرف المزيد عنّا</a>
                 </div>
-                <div class="image-wrapper animate-up delay-2">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="فريق العمل الاحترافي">
+            </div>
+            <div class="hero-image-showcase">
+                <div class="image-layer-base">
+                    <img src="WhatsApp_Image_2026-04-28_at_1.01.18_AM-removebg-preview.png" alt="فريق عمل ماركيتكس الاحترافي">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="slide-container" id="slide4">
-        <h2 class="slide-title">شركاء النجاح</h2>
-        <div class="content-area">
-            <p style="text-align: center; margin-bottom: 40px;">نعتز بثقة كبرى الشركات التي كانت جزءاً من رحلتنا الإبداعية</p>
-            <div class="partners-row animate-up delay-1">
-                <div class="partner-box"><img src="https://via.placeholder.com/200x100/ffffff/0a192f?text=Company+1" alt="شريك 1"></div>
-                <div class="partner-box"><img src="https://via.placeholder.com/200x100/ffffff/0a192f?text=Company+2" alt="شريك 2"></div>
-                <div class="partner-box"><img src="https://via.placeholder.com/200x100/ffffff/0a192f?text=Company+3" alt="شريك 3"></div>
-                <div class="partner-box"><img src="https://via.placeholder.com/200x100/ffffff/0a192f?text=Company+4" alt="شريك 4"></div>
+    <section id="stats" class="stats-section reveal">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3><span class="counter-value" data-target="4">0</span></h3>
+                <p>سنوات الخبرة</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-face-smile"></i>
+                <h3><span style="color: var(--orange-bright);">%</span><span class="counter-value" data-target="96">0</span></h3>
+                <p>رضا العملاء</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-bullhorn"></i>
+                <h3><span style="color: var(--orange-bright);">+</span><span class="counter-value" data-target="75">0</span></h3>
+                <p>حملة إعلانية ناجحة</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-users"></i>
+                <h3><span style="color: var(--orange-bright);">+</span><span class="counter-value" data-target="50">0</span></h3>
+                <p>عميل سعيد</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="slide-container" id="slide5">
-        <h2 class="slide-title">إنجازاتنا بالأرقام</h2>
-        <div class="content-area">
-            <div class="stats-grid">
-                <div class="stat-item delay-1">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">سنوات من الخبرة</div>
-                </div>
-                <div class="stat-item delay-2">
-                    <div class="stat-number">96%</div>
-                    <div class="stat-label">معدل رضا العملاء</div>
-                </div>
-                <div class="stat-item delay-1">
-                    <div class="stat-number">75+</div>
-                    <div class="stat-label">حملات إعلانية ناجحة</div>
-                </div>
-                <div class="stat-item delay-2">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">عميل سعيد ومستمر</div>
-                </div>
+    <section id="about" class="about-section reveal">
+        <div class="section-header">
+            <h2>من نحن</h2>
+            <p>تعرف على الوكالة الرقمية التي لا تقنع بأقل من الامتياز.</p>
+        </div>
+        <div class="about-cards">
+            <div class="about-card reveal">
+                <i class="fa-solid fa-eye"></i>
+                <h3>رؤيتنا</h3>
+                <p>أن نكون الشريك الاستراتيجي الأول عالمياً للأعمال الطموحة، نبتكر علامات تجارية تصنع مستقبلاً.</p>
+            </div>
+            <div class="about-card reveal">
+                <i class="fa-solid fa-rocket"></i>
+                <h3>مهمتنا</h3>
+                <p>تمكين عملائنا من النمو والنجاح من خلال تقديم حلول رقمية متكاملة تدمج الإبداع بالتكنولوجيا والبيانات.</p>
+            </div>
+            <div class="about-card reveal">
+                <i class="fa-solid fa-award"></i>
+                <h3>قيمنا</h3>
+                <p>الابتكار، الاحترافية، الجودة، الشفافية، والشراكة الدائمة مع عملائنا.</p>
             </div>
         </div>
-    </div>
 
-    <div class="slide-container" id="slide6">
-        <h2 class="slide-title">خدماتنا المحورية</h2>
-        <div class="content-area">
-            <div class="tiled-content animate-up delay-1">
-                <div class="tile">
-                    <i class="fa-solid fa-pen-nib"></i>
-                    <h3>تصميم الهوية</h3>
-                    <p>بناء علامات تجارية فريدة تترك أثراً دائماً.</p>
-                </div>
-                <div class="tile">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <h3>تصميم المواقع</h3>
-                    <p>واجهات برمجية متطورة وسرعة فائقة.</p>
-                </div>
-                <div class="tile">
-                    <i class="fa-solid fa-bullseye"></i>
-                    <h3>التسويق الرقمي</h3>
-                    <p>استهداف ذكي وحملات تحقق عائداً استثمارياً.</p>
-                </div>
-                <div class="tile">
-                    <i class="fa-solid fa-object-group"></i>
-                    <h3>الجرافيك ديزاين</h3>
-                    <p>تصاميم إبداعية لكل المنصات والمطبوعات.</p>
-                </div>
-                <div class="tile">
-                    <i class="fa-solid fa-file-signature"></i>
-                    <h3>إدارة المحتوى</h3>
-                    <p>صياغة قصص تجذب الجمهور وتحقق التفاعل.</p>
-                </div>
-                <div class="tile">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <h3>تطوير الأعمال</h3>
-                    <p>استشارات تقنية وفنية لنقل عملك للمستقبل.</p>
-                </div>
+        <div class="partners-logos reveal">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Company 1">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Company 2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Company 3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" alt="Company 4">
+        </div>
+    </section>
+
+    <section id="services" class="services-section reveal">
+        <div class="section-header">
+            <h2 style="color: var(--navy-deep);">خدماتنا الاحترافية</h2>
+            <p style="color: #555;">حلول متكاملة تغطي كافة احتياجاتك الرقمية.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <i class="fa-solid fa-object-group"></i>
+                <h3>تصميم شعارات</h3>
+                <p>نبتكر شعارات أيقونية تمثل جوهر علامتك التجارية.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fa-solid fa-fingerprint"></i>
+                <h3>هوية بصرية</h3>
+                <p>بناء نظام مرئي شامل ومتماسك يعكس شخصية عملك.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>تصميم مواقع</h3>
+                <p>تصميم مواقع إلكترونية سريعة، متجاوبة، وتجربة مستخدم مثالية.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>جرافيك ديزاين</h3>
+                <p>تصاميم إبداعية لكافة المواد التسويقية والمطبوعات.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fa-solid fa-bullseye"></i>
+                <h3>تسويق متكامل</h3>
+                <p>حملات تسويقية استراتيجية تضاعف مبيعاتك.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fa-solid fa-tasks"></i>
+                <h3>إدارة محتوى</h3>
+                <p>تخطيط، إنشاء، ونشر محتوى جذاب على كافة المنصات.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="slide-container" id="slide7">
-        <h2 class="slide-title">قوة الهوية البصرية</h2>
-        <div class="content-area">
-            <div class="two-column">
-                <div class="image-wrapper animate-up delay-1">
-                    <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2194&auto=format&fit=crop" alt="الهوية البصرية">
+    <section id="portfolio" class="portfolio-section reveal">
+        <div class="coming-soon-ribbon">
+            <span class="moving-text">
+                &nbsp; COMING SOON &nbsp; • &nbsp; AWESOME PROJECTS ARE COMING SOON &nbsp; • &nbsp; STAY TUNED &nbsp; • &nbsp; MARKITIX WORKS ON FIRE &nbsp;
+            </span>
+        </div>
+    </section>
+
+    <section id="blog" class="blog-section reveal">
+        <div class="section-header">
+            <h2>آخر المقالات</h2>
+            <p>ابقَ على اطلاع على أحدث الاتجاهات والنصائح الرقمية لتحسين أعمالك.</p>
+        </div>
+        <div class="blog-grid">
+            
+            <div class="blog-card reveal">
+                <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop');"></div>
+                <div class="blog-card-content">
+                    <h3>أهمية الهوية البصرية للأعمال</h3>
+                    <p>الهوية البصرية ليست مجرد شعار جميل، بل هي اللغة التي تتحدث بها علامتك التجارية مع عملائك. من خلال اختيار الألوان والخطوط والأنماط البصرية بدقة، تبني الشركات جسراً من الثقة مع الجمهور. في سوق مزدحم بالمنافسين، الهوية القوية والمتماسكة هي ما يجعلك لا تُنسى. في MARKITIX، نركز على تصميم هويات بصرية تعكس القيم الحقيقية لشركتك وتترك انطباعاً أولياً يدوم طويلاً، مما يسهم بشكل مباشر في زيادة ولاء العملاء ورفع المبيعات.</p>
+                    <a href="#" class="btn-blog">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
                 </div>
-                <div class="animate-up delay-2">
-                    <p>الهوية البصرية هي الروح الحقيقية لأي علامة تجارية طموحة. فهي لا تقتصر على تصميم شعار جذاب فحسب، بل تشمل بناء نظام بصري متكامل يعبر عن قيم الشركة ورؤيتها بوضوح تساهم الهوية القوية في ترسيخ صورة ذهنية إيجابية لدى العملاء، مما يسهل عملية تذكر العلامة وتمييزها وسط المنافسة الشرسة في السوق الحديث.</p>
-                    <p>إن الاستثمار في هوية بصرية مدروسة يمنح الشركة طابعاً من الاحترافية والمصداقية، ويخلق رابطاً عاطفياً مستداماً مع الجمهور المستهدف، مما ينعكس بشكل مباشر على زيادة الولاء والقيمة السوقية للمنشأة على المدى الطويل، ويجعل من علامتك التجارية أيقونة لا تُنسى في ذهن كل من يراها لأول مرة.</p>
+            </div>
+
+            <div class="blog-card reveal">
+                <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop');"></div>
+                <div class="blog-card-content">
+                    <h3>التصميم الاحترافي للمواقع</h3>
+                    <p>الموقع الإلكتروني هو واجهة عملك الرقمية. إذا كان الموقع بطيئاً أو صعب التصفح، سيغادر العميل المحتمل فوراً للبحث عن بديل. التصميم الجيد يعتمد على تجربة المستخدم (UX) وواجهة المستخدم (UI)، حيث يجب أن يكون متجاوباً بالكامل مع الهواتف الذكية وسريع الاستجابة. نحن نبني مواقع إلكترونية تفاعلية وآمنة تضمن بقاء الزائر لأطول فترة ممكنة، وتحويله من مجرد زائر إلى عميل حقيقي، مما يعزز من قوة تواجدك في العالم الرقمي بشكل ملحوظ.</p>
+                    <a href="#" class="btn-blog">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
                 </div>
+            </div>
+
+            <div class="blog-card reveal">
+                <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=2000&auto=format&fit=crop');"></div>
+                <div class="blog-card-content">
+                    <h3>استراتيجيات التسويق والمحتوى</h3>
+                    <p>المحتوى هو الملك، ولكن التسويق الذكي هو مملكته. كتابة محتوى إبداعي بدون استراتيجية واضحة لمحركات البحث (SEO) يعني أن صوتك لن يصل لجمهورك المستهدف. الجمع بين السرد القصصي الجذاب والكلمات المفتاحية المدروسة يضمن تصدر موقعك لنتائج البحث في جوجل. نحن ندير المحتوى بطريقة تضمن زيادة التفاعل العضوي (Organic Traffic)، وبناء سلطة قوية لعلامتك التجارية في مجالك، لتحقق في النهاية أعلى عائد ممكن على الاستثمار (ROI).</p>
+                    <a href="#" class="btn-blog">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="footer" class="reveal">
+        <div class="footer-logo">
+            <img src="logo.png.png" alt="Markitix Logo">
+            <p>MARKITIX وكالة رقمية متكاملة تقدم حلولاً إبداعية استراتيجية للأعمال الطموحة.</p>
+            <div class="social-icons">
+                <a href="https://instagram.com/markitixco" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </div>
-    </div>
-
-    <div class="slide-container" id="slide8">
-        <h2 class="slide-title">تصميم المواقع في 2026</h2>
-        <div class="content-area">
-            <div class="two-column">
-                <div class="animate-up delay-1">
-                    <p>في العصر الرقمي الحديث، يعد الموقع الإلكتروني الواجهة الأساسية والمنصة المركزية لأي عمل تجاري ناجح. تصميم المواقع ليس مجرد تنسيق ألوان وصور، بل هو هندسة لتجربة مستخدم سلسة وتفاعلية تضمن تحويل الزوار إلى عملاء دائمين بفاعلية تامة نركز في تصميماتنا على سرعة التحميل الفائقة، والتوافق الكامل مع مختلف الأجهزة الذكية كالهواتف والأجهزة اللوحية.</p>
-                    <p>كما نولي اهتماماً خاصاً بتقنيات تحسين محركات البحث (SEO) لضمان ظهور موقعك في الصفحات الأولى. الموقع الاحترافي يعكس مدى حداثة الشركة واهتمامها بأدق التفاصيل، ويوفر قناة تواصل فعالة ومتاحة على مدار الساعة، مما يفتح آفاقاً واسعة للانتشار العالمي وتجاوز الحدود الجغرافية التقليدية للوصول إلى جمهورك أينما كان وبكل سهولة ويسر.</p>
-                </div>
-                <div class="image-wrapper animate-up delay-2">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="تصميم المواقع">
-                </div>
-            </div>
+        <div class="footer-links">
+            <h3>روابط سريعة</h3>
+            <ul>
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#services">خدماتنا</a></li>
+                <li><a href="#portfolio">سابقة أعمالنا</a></li>
+            </ul>
         </div>
-    </div>
-
-    <div class="slide-container" id="slide9">
-        <h2 class="slide-title">فن الجرافيك ديزاين</h2>
-        <div class="content-area">
-            <div class="two-column">
-                <div class="image-wrapper animate-up delay-1">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop" alt="الجرافيك ديزاين">
-                </div>
-                <div class="animate-up delay-2">
-                    <p>يلعب الجرافيك ديزاين دوراً محورياً في نجاح أي حملة إعلانية أو استراتيجية تسويقية متكاملة. الصور والرسوم البيانية المصممة باحترافية تمتلك القدرة الفريدة على نقل الرسائل المعقدة بشكل فوري وفعال يتجاوز حدود الكلمات المكتوبة في كثير من الأحيان يساهم التصميم الجيد في جذب انتباه الجمهور في الثواني الأولى الفاصلة، ويثير الاهتمام والفضول لمتابعة المحتوى.</p>
-                    <p>من خلال التنسيق الاحترافي للألوان والخطوط والأشكال، نخلق تجربة بصرية فريدة تعزز من هوية الحملة وتزيد بشكل ملموس من معدلات التفاعل والمشاركة عبر منصات التواصل الاجتماعي. الإبداع في التصميم هو المحرك الأساسي لتحفيز المستهلكين واتخاذ القرارات الشرائية المطلوبة، مما يجعل الجرافيك ديزاين استثماراً لا غنى عنه في بناء الثقة الرقمية.</p>
-                </div>
-            </div>
+        <div class="footer-contact">
+            <h3>تواصل معنا</h3>
+            <a href="tel:009647703718200"><i class="fa-solid fa-phone"></i> 009647703718200</a>
+            <a href="https://wa.me/9647703718200" target="_blank"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
+            <a href="mailto:info@markitixco.com"><i class="fa-solid fa-envelope"></i> info@markitixco.com</a>
         </div>
-    </div>
-
-    <div class="slide-container" id="slide10">
-        <h2 class="slide-title">استراتيجيات إدارة المحتوى</h2>
-        <div class="content-area">
-            <div class="two-column">
-                <div class="animate-up delay-1">
-                    <p>إدارة المحتوى الرقمي هي الفن الذي يربط بين العلامة التجارية وجمهورها من خلال قصص ملهمة وقيمة مضافة حقيقية. لا تقتصر الاستراتيجية الفعالة على النشر المتكرر فحسب، بل تعتمد بالدرجة الأولى على تخطيط محتوى ذكي يتوافق مع اهتمامات الجمهور واحتياجاتهم الواقعية يساعد المحتوى المتسق وذو الجودة العالية في بناء الثقة والمصداقية العميقة مع المتابعين.</p>
-                    <p>كما يجعل من العلامة التجارية مرجعاً موثوقاً وخبيراً في مجالها التخصصي. من خلال التحليل المستمر لبيانات التفاعل، يتم تطوير المحتوى لضمان وصول الرسائل الصحيحة في الوقت المناسب وعبر القنوات الرقمية الملائمة تماماً، مما يعزز من علاقة الولاء بين الشركة وعملائها، ويخلق مجتمعاً رقمياً متفاعلاً يساهم في نشر رسالة العلامة التجارية بشكل طبيعي وقوي.</p>
-                </div>
-                <div class="image-wrapper animate-up delay-2">
-                    <img src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=2070&auto=format&fit=crop" alt="إدارة المحتوى">
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MARKITIX. جميع الحقوق محفوظة.</p>
         </div>
-    </div>
+    </footer>
 
-    <div class="slide-container" id="slide11">
-        <h2 class="slide-title">سابقة أعمالنا</h2>
-        <div class="content-area">
-            <p style="text-align: center; font-size: 24px;">نحن نعمل حالياً على مشاريع ضخمة ستغير قواعد اللعبة</p>
-            <div class="coming-soon-banner">
-                <div class="moving-text">
-                    قريباً .. COMING SOON .. أعمالنا القادمة ستذهلكم .. STAY TUNED .. MARKITIX NEW PORTFOLIO .. ابقوا بالقرب .. 
-                </div>
-            </div>
-            <div class="two-column" style="opacity: 0.3; margin-top: 50px;">
-                <div class="image-wrapper"><img src="https://placehold.co/600x400/112240/ccd6f6?text=Project+Alpha" alt="مشروع قادم"></div>
-                <div class="image-wrapper"><img src="https://placehold.co/600x400/112240/ccd6f6?text=Project+Beta" alt="مشروع قادم"></div>
-            </div>
-        </div>
-    </div>
+    <script>
+        // حركة ظهور العناصر عند النزول (Scroll Reveal)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // تشغيل الدالة فور تحميل الصفحة
 
-    <div class="slide-container" id="slide12">
-        <h2 class="slide-title">تواصل معنا</h2>
-        <div class="content-area">
-            <div class="contact-grid animate-up">
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <div>009647703718200</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <div>info@markitixco.com</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-brands fa-instagram"></i>
-                    <div>markitixco</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-globe"></i>
-                    <div>www.markitixco.com</div>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 60px; color: var(--orange-accent); font-weight: bold; font-size: 32px;">دعنا نبدأ رحلة النجاح معاً</p>
-        </div>
-    </div>
+        // حركة العداد للأرقام (Number Counter Animation)
+        const counters = document.querySelectorAll('.counter-value');
+        let hasCounted = false;
 
+        function animateCounters() {
+            const statsSection = document.getElementById('stats');
+            const sectionPos = statsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight;
+
+            if(sectionPos < screenPos && !hasCounted) {
+                counters.forEach(counter => {
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        // سرعة العداد
+                        const inc = target / 30; 
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+                hasCounted = true; // لمنع تكرار الحركة
+            }
+        }
+        window.addEventListener('scroll', animateCounters);
+    </script>
 </body>
 </html>
