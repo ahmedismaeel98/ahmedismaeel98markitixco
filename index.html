@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markitix | ماركيتكس للتسويق الرقمي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Markitix | وكالة تسويق رقمي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* === CSS VARIABLES === */
         :root {
             --bg-color: #0b1c2c;
-            --accent-color: #ff6a00;
-            --accent-hover: #ff8533;
-            --text-main: #ffffff;
+            --primary-color: #ff6a00;
+            --primary-glow: rgba(255, 106, 0, 0.6);
+            --text-light: #ffffff;
             --text-muted: #a0aec0;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: blur(10px);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        /* === RESET & BASE === */
+        /* === GLOBAL STYLES === */
         * {
             margin: 0;
             padding: 0;
@@ -30,854 +30,423 @@
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-light);
             overflow-x: hidden;
-            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Ambient Background Glows */
+        .ambient-glow-1, .ambient-glow-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .ambient-glow-1 {
+            top: -10%;
+            right: -5%;
+            width: 400px;
+            height: 400px;
+            background: var(--primary-color);
+        }
+        .ambient-glow-2 {
+            bottom: 20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: #0f3254;
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: 0.3s ease;
         }
 
-        ul {
-            list-style: none;
-        }
-
-        /* === UTILITIES === */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .text-accent {
-            color: var(--accent-color);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--accent-color);
-            color: #fff;
-            box-shadow: 0 0 15px rgba(255, 106, 0, 0.4);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 25px rgba(255, 106, 0, 0.7);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--text-muted);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        /* === HEADER === */
+        /* === NAVBAR === */
         header {
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(11, 28, 44, 0.9);
-            backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .nav-container {
+            padding: 2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
         }
-
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--text-light);
+        }
+        .logo span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-glow);
         }
 
-        .logo img {
-            height: 40px; /* Replace with your actual logo.png */
+        /* === BUTTONS === */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--primary-glow);
+            border: 1px solid transparent;
+            cursor: pointer;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
+        .btn:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 25px var(--primary-color);
+            background: #ff7a1a;
         }
 
         /* === HERO SECTION === */
         .hero {
-            padding-top: 160px;
-            padding-bottom: 100px;
-            position: relative;
-        }
-
-        .hero-content {
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 90%;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-        }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .glow-circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            border: 4px solid var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 50px var(--accent-color), inset 0 0 50px var(--accent-color);
-            z-index: 1;
-            animation: pulseGlow 3s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 30px var(--accent-color), inset 0 0 30px var(--accent-color); opacity: 0.6; }
-            100% { box-shadow: 0 0 70px var(--accent-color), inset 0 0 70px var(--accent-color); opacity: 1; }
-        }
-
-        /* === CLIENTS SECTION === */
-        .clients {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 40px 0;
-            border-top: 1px solid var(--card-border);
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .clients-track {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            opacity: 0.6;
-        }
-
-        .clients-track span {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        /* === SERVICES SECTION === */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: var(--glass-blur);
-            padding: 30px 20px;
-            border-radius: 15px;
             text-align: center;
-            transition: all 0.4s ease;
+            padding: 0 5%;
+            position: relative;
         }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(255, 106, 0, 0.15);
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            min-height: 120px; /* Prevents layout shift during typing */
         }
-
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
+        .cursor {
+            display: inline-block;
+            width: 4px;
+            height: 1em;
+            background-color: var(--primary-color);
+            margin-right: 5px;
+            vertical-align: text-bottom;
+            animation: blink 0.8s infinite;
         }
-
-        .service-card h3 {
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .service-card i.fa-arrow-left {
-            color: var(--accent-color);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
         }
 
         /* === STATS SECTION === */
-        .stats {
-            background: linear-gradient(180deg, transparent, rgba(255, 106, 0, 0.05), transparent);
+        .stats-section {
+            padding: 5rem 5%;
+            background: linear-gradient(180deg, transparent, rgba(11, 28, 44, 0.8));
         }
-
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem 1.5rem;
+            border-radius: 16px;
             text-align: center;
+            transition: all 0.4s ease;
         }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(255, 106, 0, 0.15);
+            border-color: rgba(255, 106, 0, 0.3);
         }
-
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 5px;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(255, 106, 0, 0.4);
+            direction: ltr; /* Keeps numbers like +50 formatted correctly */
+            display: inline-block;
         }
-
-        .stat-text {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* === PORTFOLIO SECTION === */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            height: 300px;
-            background: #112538;
-            border: 1px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .portfolio-item h3 {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            z-index: 3;
-            background: rgba(0,0,0,0.7);
-            padding: 5px 15px;
-            border-radius: 5px;
-        }
-
-        .coming-soon-text {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            animation: textGlow 1.5s infinite alternate;
-            z-index: 2;
-        }
-
-        @keyframes textGlow {
-            from { color: #fff; text-shadow: 0 0 10px var(--accent-color); }
-            to { color: var(--accent-color); text-shadow: 0 0 25px var(--accent-color), 0 0 35px var(--accent-color); }
-        }
-
-        /* === TESTIMONIALS SECTION === */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 30px;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .quote-icon {
-            color: var(--accent-color);
-            font-size: 2rem;
-            opacity: 0.5;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .client-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent-color);
-        }
-
-        .client-details h4 {
-            font-size: 1.1rem;
-        }
-
-        .client-details p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* === ABOUT SECTION (من نحن) === */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .about-features li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--card-bg);
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
-        }
-
-        .about-features i {
-            color: var(--accent-color);
-        }
-
-        /* === CTA SECTION === */
-        .cta {
-            background: linear-gradient(rgba(11, 28, 44, 0.9), rgba(11, 28, 44, 0.9)), url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,106,0,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)"/></svg>');
-            padding: 100px 0;
-            border-top: 1px solid var(--accent-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: var(--accent-color);
-            filter: blur(150px);
-            opacity: 0.2;
-            z-index: 0;
-        }
-
-        .cta .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background: #06111a;
-            padding: 60px 0 20px;
-            border-top: 1px solid var(--card-border);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
+        .stat-label {
             font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #fff;
+            font-weight: 500;
+            color: var(--text-light);
         }
 
-        .footer-col ul li {
-            margin-bottom: 12px;
+        /* === COMING SOON / SERVICES === */
+        .coming-soon-section {
+            padding: 6rem 5%;
+            text-align: center;
+        }
+        .neon-text {
+            font-size: 3rem;
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--primary-color);
+            animation: neonPulse 2s infinite alternate;
+        }
+        @keyframes neonPulse {
+            0% {
+                text-shadow: 0 0 5px var(--primary-glow), 0 0 10px var(--primary-glow);
+                color: transparent;
+            }
+            100% {
+                text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+                color: #fff;
+            }
         }
 
-        .footer-col ul li a {
-            color: var(--text-muted);
+        /* === CONTACT SECTION === */
+        .contact-section {
+            padding: 6rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-
-        .footer-col ul li a:hover {
-            color: var(--accent-color);
-            padding-right: 5px;
+        .contact-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
         }
-
-        .social-links {
+        .contact-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .contact-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
         }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+        .contact-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: #fff;
+            gap: 15px;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            transition: color 0.3s ease;
         }
-
-        .social-links a:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
+        .contact-item:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-glow);
         }
-
-        .copyright {
-            text-align: center;
-            color: var(--text-muted);
-            padding-top: 20px;
-            border-top: 1px solid var(--card-border);
-            font-size: 0.9rem;
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
 
         /* === FLOATING WHATSAPP === */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
-            left: 30px;
+            left: 30px; /* Left side for RTL context visually, or right if preferred */
             background-color: #25d366;
             color: #fff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
-            z-index: 1000;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+            z-index: 100;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
-
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: #fff;
+        }
         .whatsapp-float:hover {
-            transform: scale(1.1);
-            color: #fff;
-            box-shadow: 0 0 30px rgba(37, 211, 102, 0.8);
+            transform: scale(1.15) rotate(-10deg);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
         }
 
-        /* === RESPONSIVE DESIGN === */
-        @media (max-width: 992px) {
-            .hero-content { flex-direction: column; text-align: center; }
-            .hero-text p { margin: 0 auto 30px; }
-            .hero-btns { justify-content: center; }
-            .hero-image { width: 80%; margin: 0 auto; margin-top: 40px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-            .about-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-            .nav-links { display: none; /* Add mobile menu JS if needed */ }
+        /* === SCROLL ANIMATIONS === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .clients-track { justify-content: center; }
+            header { flex-direction: column; gap: 1rem; }
+            .hero h1 { min-height: 80px; }
+            .neon-text { font-size: 2rem; }
+            .contact-card { padding: 2rem 1rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
     <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fa-solid fa-chart-line text-accent"></i> Markitix
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#services">الخدمات</a></li>
-                <li><a href="#about">من نحن</a></li>
-                <li><a href="#portfolio">أعمالنا</a></li>
-                <li><a href="#contact">تواصل معنا</a></li>
-            </ul>
-            <a href="#" class="btn btn-primary">احجز استشارة مجانية</a>
-        </div>
+        <div class="logo">Marki<span>tix</span></div>
+        <a href="mailto:info@markitixco.com" class="btn">تواصل معنا الآن</a>
     </header>
 
     <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>نحو هوية بصرية<br><span class="text-accent">تترك أثراً وتحقق نتائج</span></h1>
-                <p>نساعد الشركات على النمو بزيادة وبرمجيات من خلال استراتيجيات تسويق ذكية وحلول إبداعية متكاملة مصممة خصيصاً لعلامتك التجارية.</p>
-                <div class="hero-btns">
-                    <a href="#" class="btn btn-primary">احجز استشارة مجانية</a>
-                    <a href="#services" class="btn btn-outline">تعرف على خدماتنا <i class="fa-solid fa-angle-left"></i></a>
-                </div>
-                <div style="margin-top: 30px; display: flex; align-items: center; gap: 10px;">
-                    <div style="display: flex;">
-                        <img src="https://i.pravatar.cc/150?img=11" alt="Client" style="width: 35px; height: 35px; border-radius: 50%; margin-left: -10px; border: 2px solid var(--bg-color);">
-                        <img src="https://i.pravatar.cc/150?img=12" alt="Client" style="width: 35px; height: 35px; border-radius: 50%; margin-left: -10px; border: 2px solid var(--bg-color);">
-                        <img src="https://i.pravatar.cc/150?img=13" alt="Client" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--bg-color);">
-                    </div>
-                    <span style="color: var(--text-muted); font-size: 0.9rem;">+50 عميل سعيد يثقون بنا</span>
-                </div>
+        <h1 id="hero-title"></h1>
+        <p class="reveal">نقدم حلولاً تسويقية مبتكرة تعكس رؤيتك وتزيد من تفاعل عملائك في العالم الرقمي، بخطوات مدروسة وتصاميم عصرية.</p>
+        <div class="reveal">
+            <a href="#contact" class="btn">ابدأ مشروعك</a>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-number" data-target="50" data-prefix="+">0</div>
+                <div class="stat-label">مشروع ناجح</div>
             </div>
-            <div class="hero-image">
-                <div class="glow-circle"></div>
-                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="فريق عمل Markitix">
+            <div class="stat-card reveal" style="transition-delay: 0.1s;">
+                <div class="stat-number" data-target="200" data-prefix="+">0</div>
+                <div class="stat-label">عميل سعيد</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 0.2s;">
+                <div class="stat-number" data-target="98" data-suffix="%">0</div>
+                <div class="stat-label">نسبة الرضا</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 0.3s;">
+                <div class="stat-number" data-target="3" data-prefix="+">0</div>
+                <div class="stat-label">سنوات خبرة</div>
             </div>
         </div>
     </section>
 
-    <div class="clients">
-        <div class="container clients-track">
-            <span>ZAIN</span>
-            <span>Asiacell</span>
-            <span>KOREK</span>
-            <span>IQOS</span>
-            <span>HUAWEI</span>
-            <span>Coca-Cola</span>
-        </div>
-    </div>
-
-    <section id="services" class="section-padding">
-        <div class="container text-center">
-            <h2 class="section-title">حلول متكاملة لنمو أعمالك</h2>
-            <p class="section-subtitle">نقدم مجموعة من الخدمات التسويقية المصممة خصيصاً لتحقيق أهدافك.</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fa-solid fa-laptop-code service-icon"></i>
-                    <h3>تصميم وتطوير المواقع</h3>
-                    <p>تصميم مواقع عصرية وسريعة لتجربة مستخدم مميزة تحقق أهداف عملك.</p>
-                    <i class="fa-solid fa-arrow-left mt-3"></i>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-chart-line service-icon"></i>
-                    <h3>تحسين محركات البحث (SEO)</h3>
-                    <p>تحسين ظهور موقعك في نتائج البحث وزيادة الزوار المستهدفين بشكل مستمر.</p>
-                    <i class="fa-solid fa-arrow-left mt-3"></i>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-bullhorn service-icon"></i>
-                    <h3>إعلانات ممولة</h3>
-                    <p>حملات إعلانية مدروسة تحقق أفضل عائد على الاستثمار وزيادة المبيعات.</p>
-                    <i class="fa-solid fa-arrow-left mt-3"></i>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-users service-icon"></i>
-                    <h3>إدارة حسابات التواصل</h3>
-                    <p>إدارة احترافية لحسابات التواصل وزيادة التفاعل وبناء علاقات قوية مع عملائك.</p>
-                    <i class="fa-solid fa-arrow-left mt-3"></i>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-pen-nib service-icon"></i>
-                    <h3>تصميم الهوية البصرية</h3>
-                    <p>تصميم هوية احترافية تعكس شخصية علامتك التجارية وتترك انطباعاً لا ينسى.</p>
-                    <i class="fa-solid fa-arrow-left mt-3"></i>
-                </div>
-            </div>
-            
-            <div style="margin-top: 40px;">
-                <a href="#" class="btn btn-outline">عرض جميع الخدمات</a>
-            </div>
+    <section class="coming-soon-section reveal">
+        <div class="glass-card" style="padding: 4rem 2rem; border-radius: 24px; border: 1px solid var(--glass-border); background: var(--glass-bg);">
+            <h2 class="neon-text">خدماتنا.. قريباً</h2>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 1.2rem;">نحن نعمل على شيء استثنائي لتوسيع نطاق أعمالك.</p>
         </div>
     </section>
 
-    <section class="section-padding stats">
-        <div class="container stats-grid">
-            <div class="stat-item">
-                <i class="fa-regular fa-face-smile"></i>
-                <div class="stat-number">+50</div>
-                <div class="stat-text">عميل سعيد</div>
-            </div>
-            <div class="stat-item">
-                <i class="fa-solid fa-chart-bar"></i>
-                <div class="stat-number">+200</div>
-                <div class="stat-text">حملة إعلانية ناجحة</div>
-            </div>
-            <div class="stat-item">
-                <i class="fa-solid fa-medal"></i>
-                <div class="stat-number">98%</div>
-                <div class="stat-text">رضا العملاء</div>
-            </div>
-            <div class="stat-item">
-                <i class="fa-solid fa-trophy"></i>
-                <div class="stat-number">+3</div>
-                <div class="stat-text">سنوات من الخبرة</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="section-padding">
-        <div class="container text-center">
-            <p class="text-accent" style="font-weight: 700;">أعمالنا</p>
-            <h2 class="section-title">نماذج من أعمالنا</h2>
-            <p class="section-subtitle">نفخر بمساعدة عملائنا على تحقيق نتائج حقيقية ومستدامة</p>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="coming-soon-text">COMING SOON</div>
-                    <h3>متجر عطور</h3>
-                </div>
-                <div class="portfolio-item">
-                    <div class="coming-soon-text">COMING SOON</div>
-                    <h3>مطعم ومطبخ</h3>
-                </div>
-                <div class="portfolio-item">
-                    <div class="coming-soon-text">COMING SOON</div>
-                    <h3>عقارات</h3>
-                </div>
-                <div class="portfolio-item">
-                    <div class="coming-soon-text">COMING SOON</div>
-                    <h3>أزياء وملابس</h3>
-                </div>
-            </div>
-            
-            <div style="margin-top: 40px;">
-                <a href="#" class="btn btn-outline">عرض جميع الأعمال</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding">
-        <div class="container text-center">
-            <p class="text-accent" style="font-weight: 700;">آراء عملائنا</p>
-            <h2 class="section-title">ماذا يقول عملاؤنا عنا</h2>
-            
-            <div class="testimonials-grid mt-4" style="text-align: right; margin-top: 40px;">
-                <div class="testimonial-card">
-                    <i class="fa-solid fa-quote-right quote-icon"></i>
-                    <p class="testimonial-text">"فريق محترف جداً ويفهم احتياجات العميل منذ البداية. نتائجهم كانت ممتازة بشكل كبير خلال فترة قصيرة."</p>
-                    <div class="client-info">
-                        <img src="https://i.pravatar.cc/150?img=11" alt="أحمد محمد">
-                        <div class="client-details">
-                            <h4>أحمد محمد</h4>
-                            <p>مدير شركة</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <i class="fa-solid fa-quote-right quote-icon"></i>
-                    <p class="testimonial-text">"تصميم الهوية والموقع كان فوق توقعاتنا. تواصل راقٍ ونتائج ممتازة في الحملات الإعلانية."</p>
-                    <div class="client-info">
-                        <img src="https://i.pravatar.cc/150?img=5" alt="سارة علي">
-                        <div class="client-details">
-                            <h4>سارة علي</h4>
-                            <p>صاحبة متجر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <i class="fa-solid fa-quote-right quote-icon"></i>
-                    <p class="testimonial-text">"أفضل شركة تسويق تعاملنا معها. عندهم استراتيجية واضحة ويقومون بتقديم تقارير دقيقة ومفصلة."</p>
-                    <div class="client-info">
-                        <img src="https://i.pravatar.cc/150?img=12" alt="علي حسن">
-                        <div class="client-details">
-                            <h4>علي حسن</h4>
-                            <p>مدير تسويق</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section-padding" style="background: rgba(255,255,255,0.02); border-top: 1px solid var(--card-border);">
-        <div class="container about-grid">
-            <div class="about-text">
-                <h2>من نحن؟ <br><span style="color: var(--text-main);">وكالتك نحو النجاح الرقمي</span></h2>
-                <p>في <strong>Markitix</strong>، نحن أكثر من مجرد وكالة تسويق رقمي؛ نحن شريكك الاستراتيجي في رحلة النمو. نجمع بين الإبداع والبيانات لتقديم حلول تسويقية متكاملة تبني علامات تجارية قوية وتزيد من المبيعات.</p>
-                <p>نعمل بشغف لنقدم لك خدمات استثنائية تغطي كافة احتياجاتك الرقمية من تصميم الهوية إلى إدارة المحتوى.</p>
+    <section id="contact" class="contact-section reveal">
+        <div class="contact-card">
+            <h2>ابقى على تواصل</h2>
+            <div class="contact-links">
+                <a href="tel:009647703718200" class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    00964 770 371 8200
+                </a>
                 
-                <ul class="about-features">
-                    <li><i class="fa-solid fa-check"></i> تصميم الشعارات والهوية</li>
-                    <li><i class="fa-solid fa-check"></i> تطوير وبناء المواقع</li>
-                    <li><i class="fa-solid fa-check"></i> التسويق الرقمي</li>
-                    <li><i class="fa-solid fa-check"></i> إدارة وصناعة المحتوى</li>
-                </ul>
-            </div>
-            <div class="about-image" style="position: relative;">
-                <div style="width: 100%; height: 400px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center;">
-                    <i class="fa-solid fa-rocket" style="font-size: 5rem; color: var(--accent-color); animation: pulseGlow 2s infinite alternate;"></i>
-                </div>
+                <a href="mailto:info@markitixco.com" class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    info@markitixco.com
+                </a>
+
+                <a href="https://instagram.com/markitixco" target="_blank" class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                    @markitixco
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="cta text-center">
-        <div class="container">
-            <h2 class="section-title">جاهز للانطلاق بمشروعك؟</h2>
-            <p class="section-subtitle" style="color: #fff;">احجز استشارة مجانية مع فريقنا وابدأ رحلتك نحو النجاح الرقمي.</p>
-            <a href="#" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem;">احجز استشارة مجانية الآن</a>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-<div class="logo">
-    <img src="logo.png" alt="Markitix Logo">
-</div>                        <i class="fa-solid fa-chart-line text-accent"></i> Markitix
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">نساعد العلامات التجارية على النمو من خلال استراتيجيات تسويقية ذكية وحلول إبداعية تحقق النتائج.</p>
-                    <div class="social-links">
-                        <a href="https://instagram.com/markitixco" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>روابط سريعة</h4>
-                    <ul>
-                        <li><a href="#">الرئيسية</a></li>
-                        <li><a href="#services">الخدمات</a></li>
-                        <li><a href="#portfolio">أعمالنا</a></li>
-                        <li><a href="#about">من نحن</a></li>
-                        <li><a href="#">المدونة</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>خدماتنا</h4>
-                    <ul>
-                        <li><a href="#">إدارة حسابات التواصل</a></li>
-                        <li><a href="#">إعلانات ممولة</a></li>
-                        <li><a href="#">تحسين محركات البحث (SEO)</a></li>
-                        <li><a href="#">تصميم الهوية البصرية</a></li>
-                        <li><a href="#">تصميم وتطوير المواقع</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>تواصل معنا</h4>
-                    <ul>
-                        <li style="display: flex; gap: 10px; align-items: center; color: var(--text-muted);">
-                            <i class="fa-solid fa-phone text-accent"></i> <span dir="ltr">+964 770 371 8200</span>
-                        </li>
-                        <li style="display: flex; gap: 10px; align-items: center; color: var(--text-muted);">
-                            <i class="fa-solid fa-envelope text-accent"></i> info@markitixco.com
-                        </li>
-                        <li style="display: flex; gap: 10px; align-items: center; color: var(--text-muted);">
-                            <i class="fa-solid fa-location-dot text-accent"></i> بغداد، العراق
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                &copy; 2024 جميع الحقوق محفوظة لـ Markitix
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/9647703718200" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
-        <i class="fa-brands fa-whatsapp"></i>
+    <a href="https://wa.me/9647703718200" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.666.598 1.216.774 1.391.86.174.086.275.072.376-.043.1-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.082 21.365c-1.503-.001-2.977-.384-4.275-1.114l-.305-.173-3.176.832.846-3.097-.19-.304c-.802-1.288-1.226-2.776-1.225-4.305.003-4.471 3.639-8.106 8.114-8.106 2.167.001 4.205.845 5.736 2.378 1.53 1.533 2.374 3.571 2.373 5.738-.002 4.47-3.638 8.104-8.11 8.106z"/></svg>
     </a>
 
+    <script>
+        // 1. Typing Animation
+        const titleText = "نحو هوية بصرية تترك أثراً وتحقق نتائج";
+        const titleContainer = document.getElementById("hero-title");
+        let charIndex = 0;
+
+        // Add cursor span inside the container to blink after typing
+        function typeEffect() {
+            if (charIndex < titleText.length) {
+                // Ensure we don't overwrite the cursor span by rebuilding the string + cursor
+                titleContainer.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                charIndex++;
+                setTimeout(typeEffect, 80); // Speed of typing
+            } else {
+                // Keep the cursor blinking at the end
+                titleContainer.innerHTML = titleText + '<span class="cursor"></span>';
+            }
+        }
+        
+        // Start typing shortly after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeEffect, 500);
+        });
+
+        // 2. Scroll Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Reveal only once
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. Counter Animation (Starts when scrolled into view)
+        const counters = document.querySelectorAll('.stat-number');
+        const counterDuration = 2000; // 2 seconds to finish counting
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const prefix = counter.getAttribute('data-prefix') || '';
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    
+                    let startTime = null;
+                    
+                    function updateCounter(currentTime) {
+                        if (!startTime) startTime = currentTime;
+                        const progress = currentTime - startTime;
+                        const percentage = Math.min(progress / counterDuration, 1);
+                        
+                        // Ease out cubic function for smooth deceleration
+                        const easeOut = 1 - Math.pow(1 - percentage, 3);
+                        const currentCount = Math.ceil(easeOut * target);
+                        
+                        counter.innerText = prefix + currentCount + suffix;
+                        
+                        if (progress < counterDuration) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = prefix + target + suffix; // Ensure final exact number
+                        }
+                    }
+                    
+                    requestAnimationFrame(updateCounter);
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    </script>
 </body>
 </html>
