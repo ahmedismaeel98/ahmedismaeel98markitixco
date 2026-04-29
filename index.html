@@ -261,7 +261,6 @@
             align-items: center;
         }
 
-        /* الدائرة المضيئة في الخلفية */
         .glowing-circle {
             position: absolute;
             width: 400px;
@@ -291,7 +290,6 @@
             filter: drop-shadow(0px 20px 30px rgba(0,0,0,0.6));
         }
 
-        /* بطاقات معلومات زجاجية عائمة */
         .glass-badge {
             position: absolute;
             background: rgba(255, 255, 255, 0.05);
@@ -411,9 +409,6 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .about-cards, .services-grid, .blog-grid, .testimonials-grid {
             grid-template-columns: repeat(3, 1fr);
         }
 
@@ -436,21 +431,11 @@
             color: var(--navy-deep);
         }
 
-        .service-card h3, .testimonial-card h3 {
-            color: var(--navy-deep);
-        }
-        
-        .service-card p, .testimonial-card p {
-            color: #555;
-        }
+        .service-card h3, .testimonial-card h3 { color: var(--navy-deep); }
+        .service-card p, .testimonial-card p { color: #555; }
+        .about-card i, .service-card i { font-size: 3rem; color: var(--orange-bright); margin-bottom: 20px; }
 
-        .about-card i, .service-card i {
-            font-size: 3rem;
-            color: var(--orange-bright);
-            margin-bottom: 20px;
-        }
-
-        /* الشركاء (4 شركات) */
+        /* الشركاء */
         .partners-logos {
             display: flex;
             justify-content: center;
@@ -473,15 +458,11 @@
             opacity: 1;
         }
 
-        /* قسم آراء العملاء المسترجع */
+        /* قسم آراء العملاء */
         .testimonial-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(255, 106, 0, 0.2);
             border-bottom: 4px solid var(--orange-bright);
-        }
-
-        .client-info {
-            margin-bottom: 20px;
         }
 
         .client-img {
@@ -494,34 +475,12 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .client-info h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--navy-deep);
-            margin-bottom: 5px;
-        }
+        .client-info h3 { font-size: 1.5rem; font-weight: 800; color: var(--navy-deep); margin-bottom: 5px; }
+        .client-info p { font-size: 1rem; color: #777; font-family: var(--font-family-alt); }
+        .stars { color: #ffc107; margin-bottom: 15px; font-size: 1.2rem; }
+        .testimonial-text { font-size: 1.1rem; line-height: 1.7; color: #555; position: relative; font-style: italic; }
 
-        .client-info p {
-            font-size: 1rem;
-            color: #777;
-            font-family: var(--font-family-alt);
-        }
-
-        .stars {
-            color: #ffc107;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #555;
-            position: relative;
-            font-style: italic;
-        }
-
-        /* المدونة المحدثة */
+        /* المدونة */
         .blog-card {
             background-color: var(--navy-medium);
             border-radius: 20px;
@@ -535,44 +494,12 @@
             border-color: var(--orange-bright);
         }
 
-        .blog-card-img {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .blog-card-content {
-            padding: 30px;
-        }
-
-        .blog-card-content h3 {
-            font-size: 1.5rem;
-            color: var(--white);
-            margin-bottom: 15px;
-        }
-
-        .blog-card-content p {
-            font-size: 1.05rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .btn-blog {
-            color: var(--orange-bright);
-            text-decoration: none;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-        }
-
-        .btn-blog:hover {
-            gap: 10px;
-            color: var(--white);
-        }
+        .blog-card-img { height: 220px; background-size: cover; background-position: center; }
+        .blog-card-content { padding: 30px; }
+        .blog-card-content h3 { font-size: 1.5rem; color: var(--white); margin-bottom: 15px; }
+        .blog-card-content p { font-size: 1.05rem; color: var(--text-light); line-height: 1.8; margin-bottom: 20px; text-align: justify; }
+        .btn-blog { color: var(--orange-bright); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .btn-blog:hover { gap: 10px; color: var(--white); }
 
         /* شريط قريباً */
         .portfolio-section {
@@ -600,28 +527,83 @@
 
         .moving-text {
             display: inline-block;
-            animation: moveText 20s linear infinite; /* تم تبطيء الحركة قليلاً لتسهيل القراءة */
+            /* تم إبطاء الحركة بشكل ملحوظ لسهولة القراءة */
+            animation: moveText 45s linear infinite; 
         }
 
-        /* الفوتر */
+        /* الفوتر المُحسن */
         footer {
             background-color: #071224;
-            padding: 80px 5% 40px;
+            padding: 80px 5% 30px;
             border-top: 2px solid var(--orange-bright);
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
+            /* توزيع تلقائي متناسق للأعمدة */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 40px;
+            align-items: start;
         }
 
-        .footer-logo img { width: 200px; margin-bottom: 20px; }
+        .footer-logo img { width: 160px; margin-bottom: 20px; }
+        .footer-logo p { color: #8892b0; font-size: 1.05rem; line-height: 1.8; }
+        
+        .footer-links h3, .footer-contact h3 { 
+            color: var(--white); 
+            font-size: 1.3rem; 
+            margin-bottom: 25px; 
+            position: relative; 
+            padding-bottom: 10px; 
+        }
+        .footer-links h3::after, .footer-contact h3::after { 
+            content: ''; 
+            position: absolute; 
+            right: 0; 
+            bottom: 0; 
+            width: 40px; 
+            height: 3px; 
+            background-color: var(--orange-bright); 
+        }
+
         .footer-links ul { list-style: none; }
-        .footer-links a, .footer-contact a { color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .footer-links a:hover, .footer-contact a:hover { color: var(--orange-bright); }
-        .footer-contact i { color: var(--orange-bright); font-size: 1.2rem; }
-        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
-        .social-icons a { color: var(--white); font-size: 1.5rem; }
-        .social-icons a:hover { color: var(--orange-bright); }
-        .footer-bottom { grid-column: 1 / -1; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; margin-top: 30px; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: #8892b0; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .footer-links a:hover { color: var(--orange-bright); transform: translateX(-5px); }
+
+        .footer-contact p, .footer-contact a { 
+            color: #8892b0; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+            font-size: 1.05rem;
+            transition: 0.3s;
+        }
+        .footer-contact a:hover { color: var(--orange-bright); }
+        .footer-contact i { color: var(--orange-bright); font-size: 1.3rem; width: 20px; text-align: center; }
+
+        .social-icons { display: flex; gap: 15px; margin-top: 25px; }
+        .social-icons a { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 45px; 
+            height: 45px; 
+            background: rgba(255,255,255,0.05); 
+            border-radius: 50%; 
+            color: var(--white); 
+            font-size: 1.2rem; 
+            transition: 0.3s; 
+        }
+        .social-icons a:hover { background: var(--orange-bright); transform: translateY(-5px); }
+
+        .footer-bottom { 
+            grid-column: 1 / -1; 
+            text-align: center; 
+            border-top: 1px solid rgba(255, 255, 255, 0.05); 
+            padding-top: 25px; 
+            margin-top: 20px; 
+            color: #8892b0; 
+        }
 
         @media (max-width: 768px) {
             .hero-container { flex-direction: column-reverse; text-align: center; }
@@ -629,7 +611,9 @@
             nav ul { display: none; }
             .stats-grid, .about-cards, .services-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
-            .social-icons, .footer-contact a { justify-content: center; }
+            .footer-links h3::after, .footer-contact h3::after { left: 50%; transform: translateX(-50%); right: auto; }
+            .social-icons { justify-content: center; }
+            .footer-contact p, .footer-contact a { justify-content: center; }
             .glass-badge { display: none; }
         }
     </style>
@@ -869,29 +853,41 @@
     <footer id="footer" class="reveal">
         <div class="footer-logo">
             <img src="logo.png.png" alt="Markitix Logo">
-            <p>MARKITIX وكالة رقمية متكاملة تقدم حلولاً إبداعية استراتيجية للأعمال الطموحة.</p>
+            <p>وكالة رقمية متكاملة تقدم حلولاً إبداعية استراتيجية للأعمال الطموحة. ندمج التصميم بالتسويق لنصنع فارقاً حقيقياً لعلامتك التجارية.</p>
             <div class="social-icons">
                 <a href="https://instagram.com/markitixco" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
+        
         <div class="footer-links">
             <h3>روابط سريعة</h3>
             <ul>
-                <li><a href="#hero">الرئيسية</a></li>
-                <li><a href="#about">من نحن</a></li>
-                <li><a href="#services">خدماتنا</a></li>
-                <li><a href="#portfolio">سابقة أعمالنا</a></li>
+                <li><a href="#hero"><i class="fa-solid fa-angle-left" style="font-size: 0.8rem; margin-left: 5px;"></i> الرئيسية</a></li>
+                <li><a href="#about"><i class="fa-solid fa-angle-left" style="font-size: 0.8rem; margin-left: 5px;"></i> من نحن</a></li>
+                <li><a href="#services"><i class="fa-solid fa-angle-left" style="font-size: 0.8rem; margin-left: 5px;"></i> خدماتنا</a></li>
+                <li><a href="#portfolio"><i class="fa-solid fa-angle-left" style="font-size: 0.8rem; margin-left: 5px;"></i> سابقة أعمالنا</a></li>
             </ul>
         </div>
+        
         <div class="footer-contact">
             <h3>تواصل معنا</h3>
-            <a href="tel:009647703718200"><i class="fa-solid fa-phone"></i> 009647703718200</a>
-            <a href="https://wa.me/9647703718200" target="_blank"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
-            <a href="mailto:info@markitixco.com"><i class="fa-solid fa-envelope"></i> info@markitixco.com</a>
+            <a href="tel:009647703718200">
+                <i class="fa-solid fa-phone"></i> 
+                <span dir="ltr">+964 770 371 8200</span>
+            </a>
+            <a href="https://wa.me/9647703718200" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> 
+                تواصل عبر واتساب
+            </a>
+            <a href="mailto:info@markitixco.com">
+                <i class="fa-solid fa-envelope"></i> 
+                info@markitixco.com
+            </a>
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2026 MARKITIX. جميع الحقوق محفوظة.</p>
         </div>
